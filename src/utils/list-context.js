@@ -5,20 +5,18 @@ export const ListContext = createContext();
 const initialState = {
   items: [
     {
-      id: 1,
       task: "Go to store",
     },
     {
-      id: 2,
       task: "Laundry",
     },
     {
-      id: 3,
       task: "Relax"
     },
-  ],
-  loading: false,
-  error: null,
+  ]
+//these could be used for async calls to show a loading wheel
+//   loading: false,
+//   error: null,
 };
 
 const reducer = (state, action) => {
@@ -30,17 +28,17 @@ const reducer = (state, action) => {
     case "DEL_ITEM":
       return {
         items: state.items.filter(
-          (item) => item.id !== action.payload
+          (item) => item.task !== action.payload
         ),
       };
-    case "START":
-      return {
-        loading: true,
-      };
-    case "COMPLETE":
-      return {
-        loading: false,
-      };
+    // case "START":
+    //   return {
+    //     loading: true,
+    //   };
+    // case "COMPLETE":
+    //   return {
+    //     loading: false,
+    //   };
     default:
       throw new Error();
   }

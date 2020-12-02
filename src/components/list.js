@@ -7,28 +7,28 @@ export default function List() {
   // Declare a local state to be used internally by this component
   const [selectedId, setSelectedId] = useState();
 
-  const [newItem, setNewItem] = useState(null)
+  const [newItem, setNewItem] = useState(null);
 
-  const delItem = (id) => {
+  const delItem = (task) => {
     dispatch({
       type: "DEL_ITEM",
-      payload: id,
+      payload: task,
     });
   };
 
   const addItem = () => {
-    dispatch({
-      type: "ADD_ITEM",
-      payload: {
+    //make sure value is not blank
+    if (newItem) {
+      dispatch({
+        type: "ADD_ITEM",
+        payload: {
           id: 4,
-          task: newItem
-      },
-    });
+          task: newItem,
+        },
+      });
+      setNewItem("");
+    }
   };
-
-
-     
-
 
   return (
     <div>
@@ -36,15 +36,19 @@ export default function List() {
         return (
           <p>
             {item.task}
-            <button onClick={() => delItem(item.id)}>Delete</button>
+            <button onClick={() => delItem(item.task)}>Delete</button>
           </p>
         );
       })}
 
       <p>Add new item?</p>
       <div>
-          <input type="text" onChange={(e) => setNewItem(e.target.value)}></input>
-          <button onClick={() => addItem()}>Add</button>
+        <input
+          type="text"
+          value={newItem}
+          onChange={(e) => setNewItem(e.target.value)}
+        ></input>
+        <button onClick={() => addItem()}>Add</button>
       </div>
     </div>
   );
