@@ -7,10 +7,10 @@ export default function List() {
   // Declare a local state to be used internally by this component
   const [selectedId, setSelectedId] = useState();
 
-  const delItem = id => {
+  const delItem = (id) => {
     dispatch({
       type: "DEL_ITEM",
-      payload: id
+      payload: id,
     });
   };
 
@@ -20,9 +20,15 @@ export default function List() {
   };
 
   return (
-      <div>
-          {state.items.map(item => {
-              return <p>{item.task}</p>
-        })}
-      </div>
-  )}
+    <div>
+      {state.items.map((item) => {
+        return (
+          <p>
+            {item.task}
+            <button id={item.id} onClick={() => delItem(item.id)}>Delete</button>
+          </p>
+        );
+      })}
+    </div>
+  );
+}
