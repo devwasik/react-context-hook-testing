@@ -47,6 +47,12 @@ const reducer = (state, action) => {
 };
 
 export const ListContextProvider = (props) => {
+  //this of this as useState
+  /*
+    below is the similar to
+
+    const [user, setUser] = useState(initialUserState)
+  */
   const [state, dispatch] = useReducer(reducer, initialState);
 
   return (
