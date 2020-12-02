@@ -1,5 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import { ListContext } from "../utils/list-context";
+import Button from '@material-ui/core/Button';
 
 export default function List() {
   // Subscribe to `items` state and access dispatch function
@@ -29,17 +30,20 @@ export default function List() {
       setNewItem("");
     }
   };
-
   return (
     <div>
-      {state.items.map((item) => {
+    {state.items.length > 0 ? 
+      state.items.map((item) => {
         return (
           <p>
             {item.task}
-            <button onClick={() => delItem(item.task)}>Delete</button>
+            &nbsp;<Button variant="contained" color="secondary" onClick={() => delItem(item.task)}>Delete</Button>
           </p>
         );
-      })}
+      })
+      :   
+         (<p>You have nothing on your list!</p>)
+    }
 
       <p>Add new item?</p>
       <div>

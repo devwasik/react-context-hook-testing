@@ -1,5 +1,4 @@
 import ListView from './components/list-view'
-
 function App() {
   return (
     <>
